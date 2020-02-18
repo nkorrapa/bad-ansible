@@ -37,7 +37,8 @@
       state: latest
   - name: install HAProxy
     yum:
-      name=haproxy state=latest
+      name: haproxy
+      state: latest
   - name: enable HAProxy
     service:
       name: haproxy
@@ -94,7 +95,7 @@
       src: index.html.app1
       dest: /usr/share/tomcat/webapps/ansible/index.html
 
-- name: index.html on app 1
+- name: index.html on app 2 
   hosts: app2
   gather_facts: false
   become: true

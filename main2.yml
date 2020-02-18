@@ -1,0 +1,28 @@
+---
+#cleanup main
+# base, db, app, then frontend
+- name: configuration
+  gather_facts: true
+  become: true
+  hosts: all 
+  tasks:
+    - name: enable repos
+      include_role:
+        name: enable_repos
+
+    - name: configure db
+      include_role:
+        name: db_setup
+      when: "'appdbs' in group_names"
+
+    - name: configure app
+      include_role:
+        name: app_setup
+      when: "'apps' in group_names"
+
+    - name: configure frontend
+      include_role:
+        name: frontend_setup
+      when: "'frontends' in group_names"
+
+

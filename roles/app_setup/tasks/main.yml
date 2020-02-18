@@ -1,0 +1,46 @@
+# tasks to setup apps
+
+- name: install packages
+  yum:
+    name:
+      - httpd
+      - tomcat
+    state: latest
+
+- name: create tomcat directory
+  file:
+    path: /usr/share/tomcat/webapps/ROOT
+    state: directory
+
+- name: copy index.html to tomcat dir
+  template:
+    src: index.html.j2
+    dest: /usr/share/tomcat/webapps/ROOT/index.html
+    mode: 0644
+    mode: u=rw,go=r
+
+- name: create /usr/share/tomcat/webapps/ansible
+  file:
+    state: directory
+    path: /usr/share/tomcat/webapps/ansible
+    owner: root
+    group: root
+    mode: 0755
+    mode: u=rwx,go=rx
+
+- name: copy index.html to webapps/ansible
+  template:
+    src: index.html.j2
+    dest: /usr/share/tomcat/webapps/ansible/index.html
+
+- name: start tomcat
+  service:
+    name: tomcat
+    state: started
+    enabled: yes
+
+- name: start httpd
+  service:
+    name: httpd
+    state: started
+    enabled: yes

@@ -1,0 +1,10 @@
+---
+# tasks file for enable_repos
+#
+- name: enable repos
+  copy:
+    src: open_three-tier-app.repo
+    dest: /etc/yum.repos.d/open_three-tier-app.repo
+    mode: 0644
+    mode: u=rw,go=r
+
