@@ -1,12 +1,13 @@
-[frontends] 
-frontend1 ansible_host=frontend1.fe3c.internal
+[frontends]
+frontend1.fe3c.internal ansible_ssh_host=frontend1.fe3c.example.opentlc.com
 
-[apps] 
-app1 ansible_host=app1.fe3c.internal
-app2 ansible_host=app2.fe3c.internal
+[apps]
+app1.fe3c.internal ansible_ssh_host=app1.fe3c.example.opentlc.com
+app2.fe3c.internal ansible_ssh_host=app2.fe3c.example.opentlc.com
 
-[appdbs] 
-appdb1 ansible_host=appdb1.fe3c.internal
+[appdbs]
+appdb1.fe3c.internal ansible_ssh_host=appdb1.fe3c.example.opentlc.com
+
 
 [internal:children]
 frontends
